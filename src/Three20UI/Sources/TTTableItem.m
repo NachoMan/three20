@@ -26,7 +26,8 @@
 @implementation TTTableItem
 
 @synthesize userInfo = _userInfo;
-
+@synthesize customAccessoryType = _customAccessoryType;
+@synthesize useCustomAccessory = _useCustomAccessory;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)dealloc {
