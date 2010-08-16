@@ -91,33 +91,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)resizeForKeyboard:(NSNotification*)notification appearing:(BOOL)appearing {
-<<<<<<< HEAD:src/Three20UICommon/Sources/TTBaseViewController.m
-  CGRect keyboardBounds;
-  BOOL animated;
-  NSString *version = [[UIDevice currentDevice] systemVersion];
-    if ([version compare:@"3.2" options:NSNumericSearch] == NSOrderedAscending) {
-    [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
-    
-    CGPoint keyboardStart;
-    [[notification.userInfo objectForKey:UIKeyboardCenterBeginUserInfoKey] getValue:&keyboardStart];
-    
-    CGPoint keyboardEnd;
-    [[notification.userInfo objectForKey:UIKeyboardCenterEndUserInfoKey] getValue:&keyboardEnd];
-    
-    animated = keyboardStart.y != keyboardEnd.y;
-  } else {
-    CGRect keyboardStart;
-    [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] getValue:&keyboardStart];
-    
-    CGRect keyboardEnd;
-    [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEnd];
-    
-    keyboardBounds = CGRectMake(0, 0, keyboardEnd.size.width, keyboardEnd.size.height);
-    
-    animated = keyboardStart.origin.y != keyboardEnd.origin.y;
-  }
-
-=======
 	CGRect keyboardBounds;
 	[[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
 
@@ -128,7 +101,6 @@
 	[[notification.userInfo objectForKey:UIKeyboardCenterEndUserInfoKey] getValue:&keyboardEnd];
 
 	BOOL animated = keyboardStart.y != keyboardEnd.y;
->>>>>>> master:src/Three20UICommon/Sources/TTBaseViewController.m
   if (animated) {
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:TT_TRANSITION_DURATION];
@@ -303,25 +275,15 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardDidShow:(NSNotification*)notification {
-<<<<<<< HEAD:src/Three20UICommon/Sources/TTBaseViewController.m
-=======
 #ifdef __IPHONE_3_21
   CGRect frameStart;
   [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] getValue:&frameStart];
 
   CGRect keyboardBounds = CGRectMake(0, 0, frameStart.size.width, frameStart.size.height);
 #else
->>>>>>> master:src/Three20UICommon/Sources/TTBaseViewController.m
   CGRect keyboardBounds;
-  NSString *version = [[UIDevice currentDevice] systemVersion];
-    if ([version compare:@"3.2" options:NSNumericSearch] == NSOrderedAscending) {
-    [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
-  } else {
-    CGRect frameStart;
-    [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] getValue:&frameStart];
-    
-    keyboardBounds = CGRectMake(0, 0, frameStart.size.width, frameStart.size.height);
-  }
+  [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
+#endif
 
   [self keyboardDidAppear:YES withBounds:keyboardBounds];
 }
@@ -337,25 +299,15 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)keyboardWillHide:(NSNotification*)notification {
-<<<<<<< HEAD:src/Three20UICommon/Sources/TTBaseViewController.m
-=======
 #ifdef __IPHONE_3_21
   CGRect frameEnd;
   [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&frameEnd];
 
   CGRect keyboardBounds = CGRectMake(0, 0, frameEnd.size.width, frameEnd.size.height);
 #else
->>>>>>> master:src/Three20UICommon/Sources/TTBaseViewController.m
   CGRect keyboardBounds;
-  NSString *version = [[UIDevice currentDevice] systemVersion];
-    if ([version compare:@"3.2" options:NSNumericSearch] == NSOrderedAscending) {
-    [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
-  } else {
-    CGRect frameEnd;
-    [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&frameEnd];
-    
-    keyboardBounds = CGRectMake(0, 0, frameEnd.size.width, frameEnd.size.height);
-  }
+  [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&keyboardBounds];
+#endif
 
   [self keyboardWillDisappear:YES withBounds:keyboardBounds];
 }
