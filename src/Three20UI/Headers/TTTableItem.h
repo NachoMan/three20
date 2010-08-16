@@ -19,8 +19,12 @@
 
 @interface TTTableItem : NSObject <NSCoding> {
   id _userInfo;
+  UITableViewCellAccessoryType _customAccessoryType;
+  BOOL _useCustomAccessory;
 }
 
 @property (nonatomic, retain) id userInfo;
+@property (nonatomic) UITableViewCellAccessoryType customAccessoryType;
+@property (nonatomic) BOOL useCustomAccessory;
 
 @end

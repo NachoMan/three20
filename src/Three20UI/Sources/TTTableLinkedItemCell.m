@@ -65,6 +65,9 @@
 
     TTTableLinkedItem* item = object;
 
+	if (item.useCustomAccessory) {
+	  self.accessoryType = item.customAccessoryType;
+    } else 
     if (item.URL) {
       TTNavigationMode navigationMode = [[TTNavigator navigator].URLMap
                                          navigationModeForURL:item.URL];
